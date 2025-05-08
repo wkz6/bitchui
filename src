@@ -81,10 +81,10 @@ end
   if not isfolder("bitchui") then
     makefolder("bitchui")
 
-    local Arrow = request({Url = "https://raw.githubusercontent.com/wkz6/bitchui/refs/heads/main/Dropdown.png", Method = "GET"})
+    local Arrow = request({Url = "https://raw.githubusercontent.com/Rain-Design/bitchui/main/Dropdown.png", Method = "GET"})
     writefile("bitchui/Arrow.png", Arrow.Body)
 
-    local Resize = request({Url = "https://raw.githubusercontent.com/wkz6/bitchui/refs/heads/main/resize.png", Method = "GET"})
+    local Resize = request({Url = "https://raw.githubusercontent.com/Rain-Design/bitchui/main/resize.png", Method = "GET"})
     writefile("bitchui/Resize.png", Resize.Body)
   end
   --//
@@ -342,11 +342,8 @@ end
     })
   end
 
-  if syn.protect_gui then
-    syn.protect_gui(Window)
-    Window.Parent = CoreGui
-  elseif gethui then
-    Window.Parent = gethui()
+  if (get_hidden_gui or gethui) then
+    Window.Parent = (get_hidden_gui or gethui)()
   else
     Window.Parent = CoreGui
   end
